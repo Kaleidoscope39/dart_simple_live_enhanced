@@ -668,18 +668,6 @@ Widget buildControls(
 
 Widget buildDanmuView(VideoState videoState, LiveRoomController controller) {
   var padding = MediaQuery.of(videoState.context).padding;
-  controller.danmakuView ??= DanmakuScreen(
-    key: controller.globalDanmuKey,
-    createdController: controller.initDanmakuController,
-    option: DanmakuOption(
-      fontSize: AppSettingsController.instance.danmuSize.value,
-      area: AppSettingsController.instance.danmuArea.value,
-      duration: AppSettingsController.instance.danmuSpeed.value,
-      opacity: AppSettingsController.instance.danmuOpacity.value,
-      strokeWidth: AppSettingsController.instance.danmuStrokeWidth.value,
-      fontWeight: AppSettingsController.instance.danmuFontWeight.value,
-    ),
-  );
   return Positioned.fill(
     top: padding.top,
     bottom: padding.bottom,
@@ -694,7 +682,19 @@ Widget buildDanmuView(VideoState videoState, LiveRoomController controller) {
                       AppSettingsController.instance.danmuBottomMargin.value,
                 )
               : EdgeInsets.zero,
-          child: controller.danmakuView!,
+          child: DanmakuScreen(
+            key: controller.globalDanmuKey,
+            createdController: controller.initDanmakuController,
+            option: DanmakuOption(
+              fontSize: AppSettingsController.instance.danmuSize.value,
+              area: AppSettingsController.instance.danmuArea.value,
+              duration: AppSettingsController.instance.danmuSpeed.value,
+              opacity: AppSettingsController.instance.danmuOpacity.value,
+              strokeWidth:
+                  AppSettingsController.instance.danmuStrokeWidth.value,
+              fontWeight: AppSettingsController.instance.danmuFontWeight.value,
+            ),
+          ),
         ),
       ),
     ),
